@@ -1,17 +1,40 @@
 # NotchKit
 
-A starter kit for building macOS notch apps. Drop your own UI into the MacBook notch in minutes.
+An agent skill for building macOS notch apps. Give this to your AI coding agent (Claude, Cursor, Copilot) and build a notch app in minutes.
 
 ---
 
+## What is this?
+
+NotchKit is a ready-to-use starter kit that any AI coding agent can pick up and extend. It handles the hard parts of building a macOS notch app — panel configuration, notch detection, hover behavior, shape math — so you (or your agent) can focus on the actual app logic.
+
+Think of it as a skill your agent already knows how to use.
+
+## Use with your agent
+
+Paste this into Claude Code, Cursor, or any AI coding assistant:
+
+```
+I want to build a macOS notch app. Use the NotchKit starter kit from
+https://github.com/aishwaryaashok14/notch-kit as the foundation.
+
+Clone it, then modify NotchContentView.swift to build [describe your app].
+The collapsed view shows content on both sides of the notch camera.
+The expanded view is the full tray that appears on hover.
+```
+
+Your agent will clone the repo, understand the architecture, and start building on top of it.
+
 ## What you get
 
-- **NotchPanel** — A floating `NSPanel` configured for notch apps (non-activating, always on top, transparent, visible on all spaces)
-- **NotchShape** — The curved shape that matches the MacBook notch aesthetic (animatable corner radii for smooth expand/collapse)
-- **NotchWindow** — Detects the actual notch dimensions, handles hover-to-expand, collapse-on-leave, and clean teardown
-- **NotchContentView** — Template with collapsed (both sides of camera) and expanded (full tray) states
-- **Menu bar icon** — Basic setup with quit
-- **Build script** — One command to build a `.app` bundle
+| File | Purpose |
+|------|---------|
+| `NotchPanel.swift` | Floating `NSPanel` — non-activating, always on top, transparent, all spaces |
+| `NotchShape.swift` | Curved shape matching the MacBook notch (animatable corner radii) |
+| `NotchWindow.swift` | Notch detection, hover expand/collapse, clean teardown |
+| `NotchContentView.swift` | Template: collapsed wings + expanded tray — **edit this file** |
+| `NotchAppDelegate.swift` | Menu bar icon + app lifecycle |
+| `build-app.sh` | One command to build a `.app` bundle |
 
 ## Quick start
 
@@ -25,11 +48,11 @@ open dist/NotchKit.app
 
 You should see a notch bar with "NotchKit" on the left and "Ready" on the right. Hover to expand the tray.
 
-## Make it yours
+## Build your own notch app
 
-All the UI lives in `NotchKit/NotchContentView.swift`. Edit two sections:
+All your UI lives in `NotchKit/NotchContentView.swift`. Two sections to customize:
 
-**Collapsed view** — Content on both sides of the notch camera. This is always visible.
+**Collapsed view** — always visible, on both sides of the camera:
 
 ```swift
 var collapsedContent: some View {
@@ -45,7 +68,7 @@ var collapsedContent: some View {
 }
 ```
 
-**Expanded view** — The full tray panel that appears on hover.
+**Expanded view** — the full tray on hover:
 
 ```swift
 var expandedContent: some View {
@@ -58,19 +81,19 @@ var expandedContent: some View {
 
 ## Customization
 
-In `NotchWindow.swift`, adjust these properties:
+In `NotchWindow.swift`:
 
 ```swift
-var expandedWidth: CGFloat = 420    // Width of expanded tray
-var expandedHeight: CGFloat = 240   // Height of expanded tray
-var wingExtension: CGFloat = 180    // How far wings extend beyond the notch
+var expandedWidth: CGFloat = 420    // Tray width
+var expandedHeight: CGFloat = 240   // Tray height
+var wingExtension: CGFloat = 180    // Wing width beyond the notch
 ```
 
-In `NotchShape.swift`, the corner radii:
+In `NotchShape.swift` (corner radii):
 
 ```
-Collapsed: topCornerRadius = 6,  bottomCornerRadius = 14
-Expanded:  topCornerRadius = 19, bottomCornerRadius = 24
+Collapsed: top = 6,  bottom = 14
+Expanded:  top = 19, bottom = 24
 ```
 
 ## Architecture
@@ -80,31 +103,44 @@ NotchKit/
   NotchApp.swift           App entry point
   NotchAppDelegate.swift   Menu bar + lifecycle
   NotchPanel.swift         NSPanel configuration
-  NotchShape.swift         The curved notch shape (animatable)
-  NotchWindow.swift        Notch detection, expand/collapse, hover
+  NotchShape.swift         Curved notch shape (animatable)
+  NotchWindow.swift        Notch detection + expand/collapse
   NotchContentView.swift   YOUR UI GOES HERE
-  Info.plist               LSUIElement (menu bar agent app)
+  Info.plist               Agent app (no dock icon)
 ```
+
+## Ideas to build with NotchKit
+
+- Pomodoro timer in the notch
+- Now playing music widget
+- CPU / memory monitor
+- Meeting countdown
+- Weather at a glance
+- Clipboard history
+- Quick notes
+- Habit tracker
+
+## How it works under the hood
+
+1. `NotchWindow` detects the notch via `NSScreen.auxiliaryTopLeftArea` and `auxiliaryTopRightArea`
+2. A `NotchPanel` (floating `NSPanel` at `.mainMenu + 3` level) is positioned at the notch
+3. `NotchTrackingView` handles mouse enter/exit for hover behavior
+4. On hover: panel animates to expanded size via `NSAnimationContext`
+5. `NotchViewModel.isExpanded` triggers the SwiftUI transition between collapsed and expanded
+6. On mouse leave: 0.8s delay, then collapse
+7. On quit: `destroy()` closes the panel and removes it — no ghost windows
 
 ## Requirements
 
 - macOS 13+
 - Swift 5.9+
+- No Xcode project needed (Swift Package Manager)
 - Works on MacBooks with and without a notch
-
-## How it works
-
-1. `NotchWindow` detects the notch via `NSScreen.auxiliaryTopLeftArea` / `auxiliaryTopRightArea`
-2. A `NotchPanel` (floating `NSPanel`) is positioned at the exact notch location
-3. `NotchTrackingView` handles mouse enter/exit for hover behavior
-4. On hover: panel animates to expanded size, `NotchViewModel.isExpanded` updates the SwiftUI content
-5. On mouse leave: 0.8s delay, then collapses back to notch size
-6. On quit: `destroy()` ensures no ghost windows persist
 
 ## Built with NotchKit
 
-- [WalkOS](https://walkos.aishashok.com) — A walking reminder that lives in your MacBook notch
+- [WalkOS](https://walkos.aishashok.com) — A walking reminder that lives in your MacBook notch ($4.99)
 
 ## License
 
-MIT
+MIT — use it for anything.
