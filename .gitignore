@@ -1,0 +1,5 @@
+.build/
+dist/
+*.dmg
+*.zip
+.DS_Store
