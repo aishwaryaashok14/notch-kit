@@ -1,18 +1,35 @@
 # NotchKit
 
-An agent skill for building macOS notch apps. Give this to your AI coding agent (Claude, Cursor, Copilot) and build a notch app in minutes.
+An agent skill for building macOS notch apps. Install it once, and any AI coding agent can build a notch app in minutes.
+
+```bash
+npx skills add aishwaryaashok14/notch-kit
+```
+
+Works with Claude Code, Cursor, Cline, GitHub Copilot, Gemini CLI, Codex, and 40+ other agents.
 
 ---
 
 ## What is this?
 
-NotchKit is a ready-to-use starter kit that any AI coding agent can pick up and extend. It handles the hard parts of building a macOS notch app — panel configuration, notch detection, hover behavior, shape math — so you (or your agent) can focus on the actual app logic.
+NotchKit is a skill for AI coding agents. It handles the hard parts of building a macOS notch app — panel configuration, notch detection, hover behavior, shape math — so you (or your agent) can focus on the actual app logic.
 
-Think of it as a skill your agent already knows how to use.
+Install the skill, tell your agent what to build, and it knows how to use NotchKit.
 
-## Use with your agent
+## Install the skill
 
-Paste this into Claude Code, Cursor, or any AI coding assistant:
+```bash
+npx skills add aishwaryaashok14/notch-kit
+```
+
+This registers NotchKit with all your local agents. Then tell your agent:
+
+```
+Build me a macOS notch app that [describe your app].
+Use the notch-kit skill as the foundation.
+```
+
+Or use it directly without the skills CLI — paste this into Claude Code, Cursor, or any AI assistant:
 
 ```
 I want to build a macOS notch app. Use the NotchKit starter kit from
@@ -22,8 +39,6 @@ Clone it, then modify NotchContentView.swift to build [describe your app].
 The collapsed view shows content on both sides of the notch camera.
 The expanded view is the full tray that appears on hover.
 ```
-
-Your agent will clone the repo, understand the architecture, and start building on top of it.
 
 ## What you get
 
