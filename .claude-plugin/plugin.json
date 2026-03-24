@@ -1,0 +1,11 @@
+{
+  "name": "notch-kit",
+  "description": "Build macOS notch apps. Provides notch detection, floating panels, hover expand/collapse, curved shape, and a SwiftUI template.",
+  "version": "1.0.0",
+  "author": {
+    "name": "aishwaryaashok14"
+  },
+  "homepage": "https://walkos.aishashok.com",
+  "repository": "https://github.com/aishwaryaashok14/notch-kit",
+  "license": "MIT"
+}

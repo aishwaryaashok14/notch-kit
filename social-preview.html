@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1280px; height: 640px; background: #050505; display: flex; align-items: center; justify-content: center; font-family: monospace; overflow: hidden; }
+.wrap { text-align: center; }
+.char { display: inline-grid; grid-template-columns: repeat(3, 24px); gap: 6px; margin-bottom: 20px; }
+.d { width: 24px; height: 24px; border-radius: 50%; }
+.d.a { background: #4ADE80; box-shadow: 0 0 12px rgba(74,222,128,0.5); }
+.d.x { background: transparent; }
+h1 { font-size: 56px; font-weight: 700; color: #e8e8e8; letter-spacing: -2px; }
+h1 span { color: #4ADE80; }
+p { font-size: 18px; color: #666; margin-top: 10px; }
+code { font-size: 14px; color: #4ADE80; background: rgba(74,222,128,0.06); padding: 8px 16px; border-radius: 8px; border: 1px solid rgba(74,222,128,0.15); display: inline-block; margin-top: 16px; }
+</style></head>
+<body>
+<div class="wrap">
+    <div class="char">
+        <span class="d x"></span><span class="d a"></span><span class="d x"></span>
+        <span class="d a"></span><span class="d x"></span><span class="d a"></span>
+        <span class="d x"></span><span class="d a"></span><span class="d x"></span>
+        <span class="d a"></span><span class="d x"></span><span class="d a"></span>
+        <span class="d x"></span><span class="d a"></span><span class="d x"></span>
+    </div>
+    <h1>Notch<span>Kit</span></h1>
+    <p>Agent skill for building macOS notch apps</p>
+    <code>npx skills add aishwaryaashok14/notch-kit</code>
+</div>
+</body></html>
