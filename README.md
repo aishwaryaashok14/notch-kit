@@ -16,13 +16,20 @@ NotchKit is a skill for AI coding agents. It handles the hard parts of building 
 
 Install the skill, tell your agent what to build, and it knows how to use NotchKit.
 
-## Install the skill
+## Install
 
+**Skills.sh (works with 40+ agents):**
 ```bash
 npx skills add aishwaryaashok14/notch-kit
 ```
 
-This registers NotchKit with all your local agents. Then tell your agent:
+**Claude Code plugin:**
+```bash
+/plugin marketplace add aishwaryaashok14/notch-kit
+/plugin install notch-kit@aishwaryaashok14-notch-kit
+```
+
+Then tell your agent:
 
 ```
 Build me a macOS notch app that [describe your app].
