@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    {
+      "name": "notch-kit",
+      "description": "Build macOS notch apps. Handles notch detection, floating panels, hover expand/collapse, curved shape, and a SwiftUI template.",
+      "version": "1.0.0",
+      "source": "."
+    }
+  ]
+}
